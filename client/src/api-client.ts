@@ -85,7 +85,6 @@ class FetchApiClient implements ApiClient {
       throw new Error("Failed to get access token");
     }
 
-    // hi
     const response = await fetch(
       `${import.meta.env.VITE_SERVER_URL}/review-items${query}`,
       {
