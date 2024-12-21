@@ -1,4 +1,8 @@
-import type { ReviewItem, TodayItem } from "./contract/server";
+import type {
+  ReviewItem,
+  ReviewItemDetail,
+  TodayItem,
+} from "./contract/server";
 
 import { getCookieValue } from "@/lib/cookie";
 import { getDatetime } from "@/lib/date";
@@ -78,16 +82,20 @@ class FetchApiClient implements ApiClient {
 
   async getTodayReviewItems(): Promise<TodayItem[]> {
     const response = await customFetch(`${BASE_URL}/review-items/today`);
-    const data = await response.json();
 
-    return data;
+    return response.json();
   }
 
   async getAllItems(): Promise<ReviewItem[]> {
     const response = await customFetch(`${BASE_URL}/review-items`);
-    const data = await response.json();
 
-    return data;
+    return response.json();
+  }
+
+  async getReviewItemDetail(itemId: number): Promise<ReviewItemDetail> {
+    const response = await customFetch(`${BASE_URL}/review-items/${itemId}`);
+
+    return response.json();
   }
 
   async addItem(item: AddItemCommand): Promise<void> {

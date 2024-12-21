@@ -1,3 +1,14 @@
+export interface ReviewItemDetail {
+  id: number;
+  mainText: string;
+  subText: string;
+  isRecurring: boolean;
+  upcomingReviewDates: string[];
+  remindLaterDates: string[];
+  memorizedDates: string[];
+  skippedDates: string[];
+}
+
 export interface ReviewItem {
   id: number;
   mainText: string;

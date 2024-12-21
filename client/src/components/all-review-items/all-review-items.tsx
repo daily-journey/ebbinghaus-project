@@ -2,16 +2,24 @@ import { useQuery } from "@tanstack/react-query";
 import { useCookies } from "react-cookie";
 
 import { apiClient } from "@/api-client";
+
 import ReviewItemSheet from "@/components/review-item-sheet/review-item-sheet";
 
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 
-export default function TodayReviewItems() {
+export default function AllReviewItems() {
   const [cookies] = useCookies(["Authorization"]);
   const { data: items, isLoading: areItemsLoading } = useQuery({
-    queryKey: ["today-items"],
-    queryFn: () => apiClient.getTodayReviewItems(),
+    queryKey: ["review-items"],
+    queryFn: () => apiClient.getAllItems(),
     enabled: !!cookies.Authorization,
+  });
+
+  const sortedItems = items?.toSorted((a, b) => {
+    const aNextReviewDate = new Date(a.reviewDates[0]);
+    const bNextReviewDate = new Date(b.reviewDates[0]);
+
+    return aNextReviewDate.getTime() - bNextReviewDate.getTime();
   });
 
   return (
@@ -19,13 +27,12 @@ export default function TodayReviewItems() {
       <ul className="flex flex-wrap justify-between gap-2 ">
         {areItemsLoading && <p>Loading...</p>}
 
-        {items?.length === 0 && <p>No items to review.</p>}
+        {sortedItems?.length === 0 && <p>No items to review.</p>}
 
-        {items?.map((item) => {
+        {sortedItems?.map((item) => {
           return (
             <ReviewItemSheet
               key={item.id}
-              itemId={item.id}
               trigger={
                 <li>
                   <Card className="transition-all hover:bg-gray-300">
@@ -35,6 +42,7 @@ export default function TodayReviewItems() {
                   </Card>
                 </li>
               }
+              itemId={item.id}
             />
           );
         })}

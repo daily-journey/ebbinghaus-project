@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 
 import AddItem from "@/components/add-item/add-item";
-import ReviewItems from "@/components/all-review-items/review-items";
+import AllReviewItems from "@/components/all-review-items/all-review-items";
 import SignInForm from "@/components/auth/sign-in-form";
 import SignUpForm from "@/components/auth/sign-up-form";
 import TodayReviewItems from "@/components/today-review-items/today-review-items";
@@ -68,7 +68,7 @@ function App() {
               </TabsContent>
 
               <TabsContent value="all">
-                <ReviewItems />
+                <AllReviewItems />
               </TabsContent>
             </Tabs>
           </>
