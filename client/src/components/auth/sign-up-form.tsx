@@ -66,71 +66,76 @@ export default function SignUpForm({ onSignUpSuccess }: Props) {
   }
 
   return (
-    <>
-      <h1 className="mb-4 text-2xl font-bold">Sign Up</h1>
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSignUp)}
-          className="w-full space-y-4"
-        >
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => {
-              return (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Name" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              );
-            }}
-          />
+    <section className="px-4 py-10 mt-10">
+      <h2 className="mb-6 text-3xl font-bold text-center">Sign Up</h2>
+      <div className="max-w-sm p-6 mx-auto bg-transparent border border-gray-300 rounded-lg shadow-md">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSignUp)} className="space-y-4">
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => {
+                return (
+                  <FormItem>
+                    <FormLabel>Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Name" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                );
+              }}
+            />
 
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => {
-              return (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Email" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              );
-            }}
-          />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => {
+                return (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Email" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                );
+              }}
+            />
 
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => {
-              return (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Password" type="password" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              );
-            }}
-          />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => {
+                return (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Password"
+                        type="password"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                );
+              }}
+            />
 
-          <Button type="submit">Submit</Button>
+            <Button className="w-full" type="submit">
+              Submit
+            </Button>
 
-          {signUpStatus === "pending" && <p>Loading...</p>}
-          {signUpStatus === "error" && (
-            <p className="mt-4 text-red-600">
-              Signup Failed. Please try again.
-            </p>
-          )}
-        </form>
-      </Form>
-    </>
+            {signUpStatus === "pending" && <p>Loading...</p>}
+            {signUpStatus === "error" && (
+              <p className="mt-4 text-red-600">
+                Signup Failed. Please try again.
+              </p>
+            )}
+          </form>
+        </Form>
+      </div>
+    </section>
   );
 }

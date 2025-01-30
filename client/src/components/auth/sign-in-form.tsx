@@ -66,9 +66,9 @@ export default function SignInForm({ showSignUpForm }: Props) {
   }
 
   return (
-    <section className="py-10 px-4 mt-10">
-      <h2 className="text-3xl font-bold text-center mb-6">Sign In</h2>
-      <div className="max-w-sm mx-auto bg-transparent border border-gray-300 rounded-lg p-6 shadow-md">
+    <section className="px-4 py-10 mt-10">
+      <h2 className="mb-6 text-3xl font-bold text-center">Sign In</h2>
+      <div className="max-w-sm p-6 mx-auto bg-transparent border border-gray-300 rounded-lg shadow-md">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSignUp)} className="space-y-4">
             <FormField

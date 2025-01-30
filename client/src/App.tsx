@@ -30,51 +30,49 @@ function App() {
 
   return (
     <main className="flex flex-col items-center w-full min-w-[340px]">
-      <div className="w-full max-w-[710px]">
-        {phase === UserPhase.LoggedIn ? (
-          <>
-            <div className="flex items-start justify-between h-12 mb-2">
-              <h1 className="text-4xl font-extrabold tracking-tight scroll-m-20 lg:text-5xl page-title">
-                Review Notes
-              </h1>
+      {phase === UserPhase.LoggedIn ? (
+        <div className="w-full max-w-[710px]">
+          <div className="flex items-start justify-between h-12 mb-2">
+            <h1 className="text-4xl font-extrabold tracking-tight scroll-m-20 lg:text-5xl page-title">
+              Review Notes
+            </h1>
 
-              <div className="flex self-center gap-x-2">
-                <AddItem />
-                <ModeToggle />
-              </div>
+            <div className="flex self-center gap-x-2">
+              <AddItem />
+              <ModeToggle />
             </div>
+          </div>
 
-            <Separator className="my-4" />
+          <Separator className="my-4" />
 
-            <Tabs
-              defaultValue="today"
-              className="w-full"
-              value={tab}
-              onValueChange={(value) => setTab(value as "today" | "all")}
-            >
-              <TabsList className="w-full">
-                <TabsTrigger className="w-full" value="today">
-                  Today
-                </TabsTrigger>
+          <Tabs
+            defaultValue="today"
+            className="w-full"
+            value={tab}
+            onValueChange={(value) => setTab(value as "today" | "all")}
+          >
+            <TabsList className="w-full">
+              <TabsTrigger className="w-full" value="today">
+                Today
+              </TabsTrigger>
 
-                <TabsTrigger className="w-full" value="all">
-                  All
-                </TabsTrigger>
-              </TabsList>
+              <TabsTrigger className="w-full" value="all">
+                All
+              </TabsTrigger>
+            </TabsList>
 
-              <TabsContent value="today">
-                <TodayReviewItems />
-              </TabsContent>
+            <TabsContent value="today">
+              <TodayReviewItems />
+            </TabsContent>
 
-              <TabsContent value="all">
-                <AllReviewItems />
-              </TabsContent>
-            </Tabs>
-          </>
-        ) : (
-          <Landing phase={phase} changePhase={(phase) => setPhase(phase)} />
-        )}
-      </div>
+            <TabsContent value="all">
+              <AllReviewItems />
+            </TabsContent>
+          </Tabs>
+        </div>
+      ) : (
+        <Landing phase={phase} changePhase={(phase) => setPhase(phase)} />
+      )}
     </main>
   );
 }
