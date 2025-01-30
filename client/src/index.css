@@ -8,14 +8,14 @@
   }
   .before-content::before {
     content: "";
-    @apply absolute inset-0 border-2 rounded-lg z-0;
+    @apply absolute inset-0 z-0 border-2 rounded-lg;
   }
   .after-content {
     @apply relative;
   }
   .after-content::after {
     content: "";
-    @apply absolute inset-0 border-2 rounded-lg z-0;
+    @apply absolute inset-0 z-0 border-2 rounded-lg;
   }
 }
 @layer base {
@@ -84,7 +84,6 @@
     font-family: Avenir, Montserrat, Corbel, "URW Gothic", source-sans-pro,
       sans-serif;
     font-weight: normal;
-    margin: 1rem;
   }
 
   .page-title {

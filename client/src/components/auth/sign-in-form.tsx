@@ -66,18 +66,15 @@ export default function SignInForm({ showSignUpForm }: Props) {
   }
 
   return (
-    <>
-      <h1 className="mb-4 text-2xl font-bold">Sign In</h1>
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSignUp)}
-          className="w-full space-y-4"
-        >
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => {
-              return (
+    <section className="px-4 py-10 mt-10">
+      <h2 className="mb-6 text-3xl font-bold text-center">Sign In</h2>
+      <div className="max-w-sm p-6 mx-auto bg-transparent border border-gray-300 rounded-lg shadow-md">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSignUp)} className="space-y-4">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
@@ -85,15 +82,13 @@ export default function SignInForm({ showSignUpForm }: Props) {
                   </FormControl>
                   <FormMessage />
                 </FormItem>
-              );
-            }}
-          />
+              )}
+            />
 
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => {
-              return (
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
@@ -101,29 +96,33 @@ export default function SignInForm({ showSignUpForm }: Props) {
                   </FormControl>
                   <FormMessage />
                 </FormItem>
-              );
-            }}
-          />
+              )}
+            />
 
-          <Button type="submit">Submit</Button>
-        </form>
+            <Button type="submit" className="w-full">
+              Submit
+            </Button>
+          </form>
 
-        {signInStatus === "pending" && <p>Loading...</p>}
-        {signInStatus === "error" && (
-          <p className="mt-4 text-red-600">Signin Failed. Please try again.</p>
-        )}
-      </Form>
+          {signInStatus === "pending" && <p>Loading...</p>}
+          {signInStatus === "error" && (
+            <p className="mt-4 text-red-600">
+              Signin Failed. Please try again.
+            </p>
+          )}
+        </Form>
 
-      <p className="mt-4">
-        Don&apos;t have an account?{" "}
-        <Button
-          variant="link"
-          onClick={showSignUpForm}
-          className="text-blue-500"
-        >
-          Sign up
-        </Button>
-      </p>
-    </>
+        <p className="mt-4 text-center">
+          Don&apos;t have an account?{" "}
+          <Button
+            variant="link"
+            onClick={showSignUpForm}
+            className="text-blue-500"
+          >
+            Sign up
+          </Button>
+        </p>
+      </div>
+    </section>
   );
 }
